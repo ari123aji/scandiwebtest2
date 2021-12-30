@@ -1,20 +1,5 @@
 <?php
 require 'connection.php';
-// if (isset($_POST["submit"])) {
-//     if (createData($_POST) > 0) {
-//         echo "
-//             <script>
-//                 document.location.href = 'index.php';
-//             </script>
-//         ";
-//     } else {
-//         echo "
-//             <script>
-//                 document.location.href = 'tambah.php';
-//             </script>
-//         ";
-//     }
-// }
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +41,7 @@ require 'connection.php';
         <hr>
     </div>
     <div class="container">
-        <form action="save.php" method="post" id="product_form" name="product_form" onsubmit="return validateForm()">
+        <form action="save.php" method="POST" id="product_form" name="product_form" onsubmit="return validateForm()">
             <div class=" form-group row mb-3">
                 <label for="sku" class="col-sm-2 col-form-label">SKU</label>
                 <div class="col-sm-3">
@@ -83,7 +68,7 @@ require 'connection.php';
                 <div class="col-sm-7">
                     <select id="productType" name="productType">
                         <option value="" disabled selected hidden>Type Switcher</option>
-                        <option value="DVD">DVD</option>
+                        <option value="DVD">DVD-disc</option>
                         <option value="Book">Book</option>
                         <option value="Furniture">Furniture</option>
                     </select>
