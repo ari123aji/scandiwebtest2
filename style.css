@@ -53,3 +53,8 @@ select:invalid {
 option {
     color: black;
 }
+
+.ADD
+{
+cursor:pointer;
+}
