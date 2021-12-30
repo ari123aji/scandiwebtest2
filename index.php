@@ -1,6 +1,17 @@
 <?php
 require 'connection.php';
 $product = query("SELECT * FROM product");
+if (isset($_POST['delete'])) {
+    $count = count($_POST['item']);
+
+    for ($i = 0; $i < $count; $i++) {
+        $id = $_POST['item'][$i];
+        $delete = mysqli_query($conn, "DELETE FROM product WHERE sku = '" . $id . "' ");
+    }
+    if ($delete) {
+        header("Refresh:0");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,20 +26,6 @@ $product = query("SELECT * FROM product");
     <link rel="stylesheet" href="style.css">
 </head>
 
-<?php
-if (isset($_POST['delete'])) {
-    $count = count($_POST['item']);
-
-    for ($i = 0; $i < $count; $i++) {
-        $id = $_POST['item'][$i];
-        $delete = mysqli_query($conn, "DELETE FROM product WHERE id = '" . $id . "' ");
-    }
-    if ($delete) {
-        header("Refresh:0");
-    }
-}
-?>
-
 <body>
     <div class="container">
         <div class="title">
@@ -37,7 +34,7 @@ if (isset($_POST['delete'])) {
             </h1>
         </div>
         <div class="actbutton">
-            <a href="addProduct.php" class="btn" name="ADD">ADD</a>
+            <a href="addProduct.php"><button class="btn" id="ADD">ADD</button></a>
             <button type="submit" name="delete" value="Delete" class="btn btn-danger" form="check">MASS DELETE</button>
         </div>
     </div>
@@ -51,7 +48,7 @@ if (isset($_POST['delete'])) {
                     <div class="col-sm-auto mb-3">
                         <div class="card" style="width: 13rem;">
                             <div class="card-body">
-                                <input type="checkbox" name="item[]" value="<?= $p["id"] ?>" class="delete-checkbox">
+                                <input type="checkbox" name="item[]" value="<?= $p["sku"] ?>" class="delete-checkbox">
                                 <h5 class="card-title text-center"><?= $p["sku"] ?></h5>
                                 <p class="card-text text-center"><?= $p["name"] ?></p>
                                 <p class="card-text text-center">$ <?= $p["price"] ?></p>
